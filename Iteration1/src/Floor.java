@@ -8,18 +8,48 @@ import java.util.Scanner;
  * Takes the information in table and processes it
  */
 
-public class Floor {
+/**
+ * @author Mohamed Selim
+ *
+ */
+public class Floor implements Runnable{
 	private boolean upPressed = false;
 	private boolean downPressed = false;	//direction of travel
 	private int floorNumber;
-	private boolean lampOn = false;			//checks if floor is ready to receive an elevator
-	private boolean arrival;
-		
+	private boolean lampOn = true;			//checks if floor is ready to receive an elevator
+	private ButtonPress recentPress;
+	
 	
 	public Floor(int FloorNumber) {
 		this.floorNumber = FloorNumber;
 	}
 	
-//	
+	public void run() {
+		
+	}
 	
+	public void pressUp() {
+		this.upPressed = true;
+		this.recentPress = sendButtonPress(1);
+		this.upPressed = false;
+		
+	}
+	public void pressDown() {
+		this.downPressed = true;
+		this.recentPress = sendButtonPress(1);
+		this.downPressed = false;
+	}
+
+	
+	private ButtonPress sendButtonPress(int direction) {
+		ButtonPress lastPress = new ButtonPress(this, direction);
+		return lastPress;
+	}
+	
+	public int getFloorNumber() {
+		return this.floorNumber;
+	}
+	public ButtonPress getRecentPress() {
+		return this.recentPress;
+	}
 }
