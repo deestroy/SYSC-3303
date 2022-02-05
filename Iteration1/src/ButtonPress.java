@@ -9,6 +9,7 @@ import java.time.LocalTime;
  */
 public class ButtonPress {
 	private boolean buttonDirection;
+	private boolean carButton;
 	private int floorNumber;
 	private LocalTime currTime = LocalTime.now();
 	
@@ -25,9 +26,12 @@ public ButtonPress(Floor floor, int direction) {
 			break;
 		}
 	}
+	this.carButton = false;
 }
 public ButtonPress(Elevator elevator) {
-	
+	this.carButton = true;
+	//this.floorNumber = elevator;
+	//this.buttonDirection = ;
 }
 	
 public boolean getButtonDirection() {
