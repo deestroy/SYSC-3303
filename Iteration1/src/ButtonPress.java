@@ -13,6 +13,22 @@ public class ButtonPress {
 	private LocalTime currTime = LocalTime.now();
 	
 	
+public ButtonPress(Floor floor, int direction) {
+	this.floorNumber = floor.getFloorNumber();
+	switch (direction){
+		case 0:{
+			this.buttonDirection = true;
+			break;
+		}
+		case 1:{
+			this.buttonDirection = false;
+			break;
+		}
+	}
+}
+public ButtonPress(Elevator elevator) {
+	
+}
 	
 public boolean getButtonDirection() {
 	return this.buttonDirection;
