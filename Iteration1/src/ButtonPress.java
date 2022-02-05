@@ -30,8 +30,8 @@ public ButtonPress(Floor floor, int direction) {
 }
 public ButtonPress(Elevator elevator) {
 	this.carButton = true;
-	//this.floorNumber = elevator;
-	//this.buttonDirection = ;
+	this.floorNumber = elevator.getCurrentFloor();
+	this.buttonDirection = ((elevator.getCurrentFloor() - this.floorNumber) >= 0);
 }
 	
 public boolean getButtonDirection() {
