@@ -25,6 +25,22 @@ public class Floor {
 		this.floorNumber = FloorNumber;
 	}
 	
+	public void pressUp() {
+		this.upPressed = true;
+		sendButtonPress();
+		this.upPressed = false;
+		
+	}
+	public void pressDown() {
+		this.downPressed = true;
+		sendButtonPress();
+		this.downPressed = false;
+	}
+	
+	private void sendButtonPress() {
+		
+	};
+	
 //	/**
 //	 * Parse the data recieved in the input file
 //	 * 
