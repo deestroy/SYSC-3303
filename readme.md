@@ -8,6 +8,7 @@
 - ReadMe
 #### Mohammed Jemal
 #### Aymaan Newaz
+- Elevator.java
 #### Mohamed Selim
 - ReadMe
 - Floor (button Events)
