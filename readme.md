@@ -18,4 +18,4 @@ A car has information about its current task. This includes the floor it's headi
 ### Scheduler
 The Scheduler continously checks the "buffer" for free cars, and then matches these cars with any unassigned "instructions".
 
-It also receives any "instructions" from the FloorSubsystem and inputs them into the "Schedule.txt" file
+It also receives any "instructions" from the FloorSubsystem and inputs them into the "Schedule.txt" file.
