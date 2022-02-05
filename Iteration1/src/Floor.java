@@ -26,7 +26,7 @@ public class Floor {
 	/**
 	 * Parse the data recieved in the input file
 	 * 
-	 * @param fileName - the name of the input file
+	 * @param fileName - the name of the input file assuming it is .txt
 	 */
 	public void parseData(String fileName) {
 		
