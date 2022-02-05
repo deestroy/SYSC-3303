@@ -7,6 +7,7 @@ import java.util.Scanner;
  * Basic Data about current status of floor
  * Takes the information in table and processes it
  */
+
 /**
  * @author Mohamed Selim
  *
@@ -18,7 +19,6 @@ public class Floor implements Runnable{
 	private boolean lampOn = true;			//checks if floor is ready to receive an elevator
 	private ButtonPress recentPress;
 	
-	//private String fileName = "/Users/dhritiaravind/git/SYSC-3303/Iteration1/testdata.txt"; //current location for the file
 	
 	public Floor(int FloorNumber) {
 		this.floorNumber = FloorNumber;
@@ -39,6 +39,7 @@ public class Floor implements Runnable{
 		this.recentPress = sendButtonPress(1);
 		this.downPressed = false;
 	}
+
 	
 	private ButtonPress sendButtonPress(int direction) {
 		ButtonPress lastPress = new ButtonPress(this, direction);
