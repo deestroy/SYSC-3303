@@ -10,6 +10,10 @@ public class FloorSubsystem extends Thread {
 //	private boolean doors;
 //	private boolean motor;
 	
+	public FloorSubsystem() {
+		
+	}
+	
 
 
 }
