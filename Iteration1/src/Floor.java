@@ -17,6 +17,7 @@ public class Floor {
 	private int floorNumber;
 	private boolean lampOn = false;			//checks if floor is ready to receive an elevator
 	private boolean arrival;
+	private ButtonPress recentPress;
 	
 	//private String fileName = "/Users/dhritiaravind/git/SYSC-3303/Iteration1/testdata.txt"; //current location for the file
 	
@@ -27,19 +28,25 @@ public class Floor {
 	
 	public void pressUp() {
 		this.upPressed = true;
-		sendButtonPress();
+		this.recentPress = sendButtonPress(1);
 		this.upPressed = false;
 		
 	}
 	public void pressDown() {
 		this.downPressed = true;
-		sendButtonPress();
+		this.recentPress = sendButtonPress(1);
 		this.downPressed = false;
 	}
 	
-	private void sendButtonPress() {
-		
-	};
+	private ButtonPress sendButtonPress(int direction) {
+		ButtonPress lastPress = new ButtonPress(this, direction);
+		return lastPress;
+	}
+	
+	public int getFloorNumber() {
+		return this.floorNumber;
+	}
+	
 	
 //	/**
 //	 * Parse the data recieved in the input file
