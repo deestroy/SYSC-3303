@@ -29,19 +29,17 @@ public class Floor implements Runnable {
 		synchronized (sched.getFloorQueue()) {
 			while(true) {
 			if (this.sched.getFloorQueue().size() < 100000) {
-				System.out.println("EMPTY");
+				System.out.println("Floor Queue is Empty");
 				
 				try {
-					//Thread.sleep(4000);
 					sched.getFloorQueue().wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
 			}
 			this.recentPress = sched.getFloorQueue().get(0);
-			System.out.println("WORKED");
+			System.out.println("Floor has received something!");
 			sched.getFloorQueue().notifyAll();
 			}
 		}
