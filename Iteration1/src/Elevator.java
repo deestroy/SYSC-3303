@@ -47,7 +47,6 @@ public class Elevator implements Runnable {
 					//Thread.sleep(4000);
 					this.sched.getQueue().wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
@@ -57,9 +56,9 @@ public class Elevator implements Runnable {
 			System.out.println("Receieved something");
 			
 			try {
+				//The elevator executes the task. For now, this delay is a place holder.
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
