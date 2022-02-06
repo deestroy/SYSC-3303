@@ -7,13 +7,13 @@
 - Scheduler.java
 - FloorSubsystem - Parsing
 - UML Diagram
-- README
+- README.txt
 
 #### Mohammed Jemal
 - UML Diagram
 - Testing
 - Javadoc documenting
-- README
+- README.txt
 
 #### Aymaan Newaz
 - Elevator.java
