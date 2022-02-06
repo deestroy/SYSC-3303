@@ -28,7 +28,7 @@ public class Floor implements Runnable {
 	public void run() {
 		synchronized (sched.getFloorQueue()) {
 			while(true) {
-			if (this.sched.getFloorQueue().size() < 25) {
+			if (this.sched.getFloorQueue().size() < 100000) {
 				System.out.println("EMPTY");
 				
 				try {
