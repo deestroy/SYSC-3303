@@ -7,6 +7,7 @@ import java.util.Scanner;
 /*
  * Basic Data about current status of floor
  * Takes the information in table and processes it
+ * Represents a floor of a building.
  */
 
 /**
@@ -20,11 +21,17 @@ public class Floor implements Runnable {
 	private ButtonPress recentPress;
 	private ButtonPress receivedInfo;
 
+	/**
+	* Constructor for the floor class.
+	*/
 	public Floor(int FloorNumber, Scheduler sched) {
 		this.sched = sched;
 		this.floorNumber = FloorNumber;
 	}
 
+	/**
+	* This is the section for running with threads. 
+	*/
 	public void run() {
 		synchronized (sched.getFloorQueue()) {
 			while(true) {
@@ -44,10 +51,17 @@ public class Floor implements Runnable {
 			}
 		}
 	}
+	
+	/**
+	* Returns the number of the floor.
+	*/
 	public int getFloorNumber() {
 		return this.floorNumber;
 	}
 
+	/**
+	* Indicates the button that was most recently pressed.
+	*/
 	public ButtonPress getRecentPress() {
 		return this.recentPress;
 	}
