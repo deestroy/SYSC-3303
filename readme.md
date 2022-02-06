@@ -39,16 +39,15 @@
 ButtonPress is a container class for the messages that are passed back and forth through the components of the system. 
 
 #### FloorSubsystem
-The floorsubstystem manages the floor threads. It registers any button presses and converts them into the "instruction" text format. The instruction is then sent to the Scheduler,
-which adds it to the list of scheduled tasks as necessary.#
+The FloorSubsystem reads entries from a text file and converts them into a suitable format for the system. The instruction is then sent to the Scheduler, which adds it to the queue of scheduled tasks as necessary.
 
-#### Floors
-Has a button to input the direction the user wants to go to. It will send a message to Elevator.java when the corresponding button is pressed.
+#### Floor
+Has a button to input the direction the user wants to go. It also has a lamp that signals if the floor is ready to receive an Elevator
 
-#### Cars
-A car has information about its current task. This includes the floor it's heading to, the direction, and times needed for each part of the task.
+#### Elevator
+An elevator has information about its current task. This includes the floor it's heading to, the direction, and time needed for the task. It receives instructions from the Scheduler, executes them, then sends a message to the Scheduler.
 
 #### Scheduler
-The Scheduler continously checks the "buffer" for free cars, and then matches these cars with any unassigned "instructions".
-It also receives any "instructions" from the FloorSubsystem and inputs them into the "Schedule.txt" file.
+The Scheduler in this Iteration acts as a communication channel; it takes entries from the FloorSubsystem and delivers them to the Elevator. It also receives messages from the 
+Elevator and delivers them to the Floor.
 
