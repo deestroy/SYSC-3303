@@ -42,9 +42,8 @@ public class Elevator implements Runnable {
 		synchronized (this.sched.getQueue()) {
 			while(true) {
 			if (this.sched.getQueue().size() == 0) {
-				System.out.println("sched queue empty");
+				System.out.println("Scheduler queue is Empty");
 				try {
-					//Thread.sleep(4000);
 					this.sched.getQueue().wait();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -53,7 +52,7 @@ public class Elevator implements Runnable {
 			}
 			this.recentPress = this.sched.getQueue().get(0);
 			this.sched.getQueue().remove(0);
-			System.out.println("Receieved something");
+			System.out.println("Elevator receieved something!");
 			
 			try {
 				//The elevator executes the task. For now, this delay is a place holder.
@@ -63,7 +62,7 @@ public class Elevator implements Runnable {
 			}
 			
 			this.sched.addFloorQueue(recentPress);
-			System.out.println("Gave to floor queue");
+			System.out.println("Added Event to FloorQueue");
 			}
 		}
 	}
