@@ -18,8 +18,7 @@
 #### Marwan Zeyada
 - readme
 #### FloorSubsystem
-The floorsubstystem manages the floor threads. It registers any button presses and converts them into the "instruction" text format. The instruction is then sent to the Scheduler,
-which adds it to the list of scheduled tasks as necessary.#
+The floorsubstystem manages the floor threads. It registers any button presses and converts them into the "instruction" text format. The instruction is then sent to the Scheduler, which adds it to the list of scheduled tasks as necessary.
 ##### Floors
 A floor has fields about its number, an Up and  Down button,..
 
