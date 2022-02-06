@@ -46,18 +46,6 @@ public class Floor implements Runnable {
 			}
 		}
 	}
-
-	/*
-	 * public void pressUp() { this.buttonDirection = true; this.recentPress =
-	 * pressButton(buttonDirection); this.scheduler.addTask(recentPress);
-	 * 
-	 * } public void pressDown() { this.buttonDirection = false; this.recentPress =
-	 * pressButton(buttonDirection); this.scheduler.addTask(recentPress); }
-	 * 
-	 * private void pressButton(boolean buttonDirection) { this.recentPress =
-	 * ButtonPress(buttonDirection, 0, this.floorNumber, LocalTime.now()); }
-	 */
-
 	public int getFloorNumber() {
 		return this.floorNumber;
 	}
