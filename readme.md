@@ -17,6 +17,7 @@
 - Floor (button Events)
 #### Marwan Zeyada
 - readme
+- sequence diagram
 #### FloorSubsystem
 The floorsubstystem manages the floor threads. It registers any button presses and converts them into the "instruction" text format. The instruction is then sent to the Scheduler, which adds it to the list of scheduled tasks as necessary.
 ##### Floors
