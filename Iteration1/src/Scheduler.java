@@ -16,43 +16,42 @@ public class Scheduler implements Runnable {
 	private FloorSubsystem floorsub;
 
 	/*
-	 * Constructor for Scheduler
+	 * Constructor for Scheduler class.
 	 * 
-	 * @param elevators List of elevators
-	 * 
-	 * @param floors List of floors
 	 */
 	public Scheduler(FloorSubsystem floorsub) {
 		this.floorsub = floorsub;
 	}
 
+	/**
+	* Override constructor for Schedulere class including a queue.
+	*/
 	public Scheduler(FloorSubsystem floorsub, ArrayList<ButtonPress> queue) {
 		this.floorsub = floorsub;
 		this.queue = queue;
 	}
 
-	/**
-	 * Find a command in the queue
-	 * 
-	 * @param task queried
-	 */
 	public synchronized void getQueueValue() {
 		queue.get(0);
 		notifyAll();
 	}
 
+	/**
+	* Returns a queue of all the button presses.
+	*/
 	public ArrayList<ButtonPress> getQueue() {
 		return this.queue;
 	}
 
+	/**
+	* Returns the queue of the floors.
+	*/
 	public ArrayList<ButtonPress> getFloorQueue() {
 		return this.floorQueue;
 	}
 
 	/**
-	 * Add a new command to the queue
-	 * 
-	 * @param task added
+	 * Adds button presses to the queue of button presses.
 	 */
 	public synchronized void addToQueue(ButtonPress btn) {
 		queue.add(btn);
@@ -83,6 +82,9 @@ public class Scheduler implements Runnable {
 		}
 	}
 	
+	/**
+	* Adds button presses to the floor queue.
+	*/
 	public void addFloorQueue(ButtonPress buttonpress) {
 		synchronized(this.floorQueue) {
 		this.floorQueue.add(buttonpress);
