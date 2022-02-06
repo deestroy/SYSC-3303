@@ -8,6 +8,8 @@ import java.util.Scanner;
 import java.util.HashMap;
 
 /*
+ *
+ * @author Dhriti
  * Communicates between ElevatorSubsystem and FloorSubsystem
  * - Scheduler will reply to the Elevator when there is work to be done
  * - After data is sent from to the elevator, it will forward the Data to the floor
@@ -17,15 +19,6 @@ public class Scheduler implements Runnable {
 	private ArrayList<ButtonPress> queue = new ArrayList<ButtonPress>();
 	private ArrayList<ButtonPress> floorQueue = new ArrayList<ButtonPress>();
 	private FloorSubsystem floorsub;
-//	private boolean elevatorReady; //elevator ready to receive requests
-//	private boolean elevatorTask; //If the elevator is taking data from the File
-//	private boolean floorTask; //If the floor is taking new data
-//	// private HashMap<Integer, ArrayList<ButtonPress>> scheduledData = new HashMap<Integer, ArrayList<ButtonPress>>(); // car ID and userda
-//	
-//	private ArrayList<Elevator> elevators;
-//	private ArrayList<Floor> floors;
-//	
-//	
 
 	/*
 	 * Constructor for Scheduler
@@ -70,20 +63,6 @@ public class Scheduler implements Runnable {
 		queue.add(btn);
 		notifyAll();
 	}
-//	
-////	/**
-////	 * Finished an elevator task
-////	 */
-////	public void finishTask() {
-////		userData.remove(0);
-////	}
-////	
-////	/**
-////	 * Add an elevator task
-////	 */
-////	public void addTask(ButtonPress bu) {
-////		userData.add(bu);	
-////	}
 
 	@Override
 	public void run() {
