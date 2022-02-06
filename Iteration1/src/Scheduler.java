@@ -1,11 +1,6 @@
 package src;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.HashMap;
+
 
 /*
  *
@@ -69,7 +64,7 @@ public class Scheduler implements Runnable {
 		synchronized (this.floorsub.getInfo()) {
 			while(true) {
 			if (this.floorsub.getInfo().size() == 0) {
-				System.out.println("floorsub bad empty");
+				System.out.println("Scheduler found that FloorSubsytem is empty");
 
 				try {
 					//Thread.sleep(4000);
@@ -82,7 +77,7 @@ public class Scheduler implements Runnable {
 			}
 			queue.add(this.floorsub.getInfo().get(0));
 			this.floorsub.getInfo().remove(0);
-			System.out.println("took from floorsub");
+			System.out.println("Read from Floorsub");
 			//this.floorsub.getInfo().notifyAll();
 			}
 		}
