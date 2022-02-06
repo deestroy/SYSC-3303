@@ -1,14 +1,6 @@
 package src;
 
-import org.junit.*;
-import org.junit.Assert.*;
-
-
-
 public class TestProgram {
-	
-	
-	
 	public static void main(String[] args) {
 		Thread elevator1, floor1, sched1;
 		FloorSubsystem floorsub = new FloorSubsystem();
@@ -23,9 +15,4 @@ public class TestProgram {
 		elevator1.start();
 		floor1.start();
 	}
-	
-
-
-
-  
 }
