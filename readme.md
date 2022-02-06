@@ -5,18 +5,19 @@
 #### Dhriti Aravind
 - Parsing the input txt file
 - Scheduler.java
-- FloorSubsystem.java
+- FloorSubsystem - Parsing
 - UML Diagram
-- ReadMe
+- README
 
 #### Mohammed Jemal
-- UML Diargam
+- UML Diagram
+- Testing
 - Javadoc documenting
-- README.txt
+- README
 
 #### Aymaan Newaz
 - Elevator.java
-- README.txt
+- README
 - Set up instructions and testing
 
 #### Mohamed Selim
@@ -28,9 +29,10 @@
 
 #### Marwan Zeyada
 - Testing
-- FloorSubsystem.java 
+- FloorSubsystem.java
+- Scheduler.java
 - UML diagram
-- README.txt
+- README
 
 #### ButtonPress.java
 ButtonPress is a container class for the messages that are passed back and forth through the components of the system. 
