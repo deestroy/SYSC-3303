@@ -57,18 +57,38 @@ public class FloorSubsystem {
 
 	}
 
+	/**
+	 * adds a ButtonPress to the info arraylist
+	 * 
+	 * @param ButtonPress - the addee
+	 */
 	public void addIn(ButtonPress buttonpress) {
 		this.info.add(buttonpress);
 	}
 
+	/**
+	 * removes a ButtonPress to the info arraylist
+	 * 
+	 * @param ButtonPress - the removee
+	 */
 	public void removeOut(ArrayList<Object> removee) {
 		info.remove(removee);
 	}
 
+	/**
+	 * removes a ButtonPress to the info arraylist using an index
+	 * 
+	 * @param index - the index of the removee
+	 */
 	public void removeOut(int index) {
 		info.remove(index);
 	}
 
+	/**
+	 * gets info arraylist
+	 * 
+	 *
+	 */
 	public ArrayList<ButtonPress> getInfo(){
 		return info;
 	}
