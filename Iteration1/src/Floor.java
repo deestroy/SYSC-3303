@@ -10,7 +10,6 @@ import java.util.Scanner;
 
 /**
  * @author Mohamed Selim
- *
  */
 public class Floor implements Runnable{
 	private boolean upPressed = false;
@@ -18,6 +17,7 @@ public class Floor implements Runnable{
 	private int floorNumber;
 	private boolean lampOn = true;			//checks if floor is ready to receive an elevator
 	private ButtonPress recentPress;
+	private ButtonPress receivedInfo;
 	
 	
 	public Floor(int FloorNumber) {
@@ -30,7 +30,7 @@ public class Floor implements Runnable{
 	
 	public void pressUp() {
 		this.upPressed = true;
-		this.recentPress = sendButtonPress(1);
+		this.recentPress = sendButtonPress(0);
 		this.upPressed = false;
 		
 	}
