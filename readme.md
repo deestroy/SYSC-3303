@@ -19,6 +19,7 @@
 - Elevator.java
 - README
 - Set up instructions and testing
+- Sequence Diagram
 
 #### Mohamed Selim
 - ReadMe
