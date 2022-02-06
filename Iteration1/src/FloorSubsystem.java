@@ -6,7 +6,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/* author: Marwan Zeyada
+/* author: Dhriti Aravind & Marwan Zeyada
  * 
  * Client in system
  * 
