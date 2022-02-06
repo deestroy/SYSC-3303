@@ -9,11 +9,16 @@ import java.time.LocalTime;
  */
 public class ButtonPress {
 	private boolean buttonDirection;
-	private boolean carButton;
+	private int carButton;
 	private int floorNumber;
 	private LocalTime currTime = LocalTime.now();
 	
-	
+public ButtonPress(boolean buttonDirection, int carButton, int floorNumber, LocalTime buttonTime) {
+	this.buttonDirection = buttonDirection;
+	this.carButton = carButton;
+	this.floorNumber = floorNumber;
+	this.LocalTime = buttonTime;	
+}
 public ButtonPress(Floor floor, int direction) {
 	this.floorNumber = floor.getFloorNumber();
 	switch (direction){
