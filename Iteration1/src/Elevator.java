@@ -2,6 +2,9 @@ package src;
 
 import java.time.LocalTime;
 
+/**
+* This class is meant to represent an elevator car object found in buildings with multiple floors. 
+*/
 public class Elevator implements Runnable {
 	private Scheduler sched;
 	private int currentFloor = 1; // All elevators start on the first floor.
@@ -10,26 +13,31 @@ public class Elevator implements Runnable {
 	private int carId = 0;
 	private ButtonPress recentPress;
 
+	/**
+	* Constructor for the Elevator Class.
+	*/
 	public Elevator(int carId, Scheduler scheduler) {
 		this.carId = carId;
 		this.sched = scheduler;
 	}
 
-	/*
-	private void pressButton(int floorNumber) {
-		this.recentPress = new ButtonPress((currentFloor - floorNumber >= 0), floorNumber, currentFloor, LocalTime.now());
-		//this.sched.addTask(recentPress);
-	}
+	/**
+	* Returns the number of the current floor the elevator is located.
 	*/
-
 	public int getCurrentFloor() {
 		return currentFloor;
 	}
 
+	/**
+	* Returns the elevator car's ID number.
+	*/
 	public int getCarId() {
 		return carId;
 	}
 
+	/**
+	* This is the code that runs when the thread starts.
+	*/
 	public void run() {
 		synchronized (this.sched.getQueue()) {
 			while(true) {
