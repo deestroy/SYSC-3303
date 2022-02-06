@@ -22,7 +22,7 @@
 - Sequence Diagram
 
 #### Mohamed Selim
-- ReadMe
+- README.txt
 - Floor (button Events)
 - Cars.java
 - FloorSubsystem.java
@@ -39,13 +39,11 @@
 ButtonPress is a container class for the messages that are passed back and forth through the components of the system. 
 
 #### FloorSubsystem
-The floorsubsystem manages the floor threads. It registers any button presses and converts them into the "instruction" text format. The instruction is then sent to the Scheduler, which adds it to the list of scheduled tasks as necessary.
+The floorsubstystem manages the floor threads. It registers any button presses and converts them into the "instruction" text format. The instruction is then sent to the Scheduler,
+which adds it to the list of scheduled tasks as necessary.#
 
 #### Floors
 Has a button to input the direction the user wants to go to. It will send a message to Elevator.java when the corresponding button is pressed.
-
-#### ElevatorSubsystem
-The ElevatorSubsystem controls the Car threads. Whenever a Car is done with its task, the Elevator subsystem adds it to a "buffer" of free cars.
 
 #### Cars
 A car has information about its current task. This includes the floor it's heading to, the direction, and times needed for each part of the task.
