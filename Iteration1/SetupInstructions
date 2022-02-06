@@ -1,0 +1,4 @@
+-In the src directory of the Iteration1 Package we have a number of classes.
+-Unzip the project file and import it into eclipse
+-We will be using TestProgram.java to test the classes implemented. 
+-Copy the test.txt file provided into a known location and copy its path in the TestProgram.java file inside the floorsub.Parsedata("In here")
