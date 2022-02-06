@@ -33,7 +33,7 @@
 - FloorSubsystem.java
 - Scheduler.java
 - UML diagram
-- README
+- README.txt
 
 #### ButtonPress.java
 ButtonPress is a container class for the messages that are passed back and forth through the components of the system. 
