@@ -7,6 +7,8 @@
 - UML Diagram
 - ReadMe
 #### Mohammed Jemal
+- UML Diargam
+- Javadoc documenting
 #### Aymaan Newaz
 - Elevator.java
 #### Mohamed Selim

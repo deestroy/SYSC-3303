@@ -16,9 +16,8 @@ import java.util.Scanner;
 
 
 public class FloorSubsystem {
-	private ArrayList<ButtonPress> info;
-	private ArrayList<ButtonPress> userData = new ArrayList<ButtonPress>(); //parsed data
-	private String fileName = "/Users/dhritiaravind/git/SYSC-3303/Iteration1/testdata.txt"; //current location for the file
+	private ArrayList<ButtonPress> info = new ArrayList<ButtonPress>();
+	private String fileName = "C:\\Users\\zeyad\\Documents\\test.txt"; //current location for the file
 
 	public FloorSubsystem() {
 	}
@@ -42,7 +41,11 @@ public class FloorSubsystem {
 				String[] splited = data.split(" ");
 
 				// create a new ArrayList with the data separated
-				userData.add(new ButtonPress(splited[2],Integer.parseInt(splited[1]), Integer.parseInt(splited[3]), LocalTime.parse(splited[0])));	
+				boolean direction = false;
+				if(splited[2].equals("Up")) {
+					direction = true;
+				}
+				this.info.add(new ButtonPress(direction,Integer.parseInt(splited[1]), Integer.parseInt(splited[3]), LocalTime.parse(splited[0])));	
 
 
 			}
