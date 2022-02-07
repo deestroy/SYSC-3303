@@ -54,12 +54,12 @@ Elevator and delivers them to the Floor.
 ## Time and speeds:
 According to the Data provided in Project Iteration 0,
 
-- ### The Average time the elevator spends per floor was calculated to be 9.51 sec
+- #### The Average time the elevator spends per floor was calculated to be 9.51 sec
 This was found by taking the total time the elevator took to travel from the 1st floor to the 13th floor and dividing that by the number of floors.
 
-- ### The Average speed of the elevator was found to be 0.4203 m/sec
+- #### The Average speed of the elevator was found to be 0.4203 m/sec
 This was found by calculating the total distance travelled by the elevator in the provided dataset and dividing it by the time taken to travel this distance.
 
-- ### The acceleration of the elevator was found to be 0.9 m/sec^2
+- #### The acceleration of the elevator was found to be 0.9 m/sec^2
 
-- ### The maximum speed of the elevator in the recorded dataset was 2.7 m/sec
+- #### The maximum speed of the elevator in the recorded dataset was 2.7 m/sec
