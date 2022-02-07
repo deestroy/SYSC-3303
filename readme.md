@@ -62,4 +62,4 @@ According to the Data provided in Project Iteration 0,
 
 - #### The acceleration of the elevator was found to be 0.9 m/sec^2
 
-- #### The maximum speed of the elevator in the recorded dataset was 2.7 m/sec
+- #### The maximum speed of the elevator in the recorded dataset was 2.3 m/sec
