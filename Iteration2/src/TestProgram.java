@@ -10,7 +10,7 @@ public class TestProgram {
 		elevator1 = new Thread(new Elevator(0, elevsubsys), "elevator");
 		elevsubsys1 = new Thread(elevsubsys, "Elevator Subsystem");
 		
-		floorsub.parseData("C:\\Users\\moham\\Desktop\\SYSC-3303-iteration2\\Iteration1\\test.txt");
+		floorsub.parseData("test.txt");
 		sched1.start();
 		elevator1.start();
 		elevsubsys1.start();
