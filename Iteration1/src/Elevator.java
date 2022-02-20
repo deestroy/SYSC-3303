@@ -7,7 +7,7 @@ import java.time.LocalTime;
 */
 public class Elevator implements Runnable {
 	private Scheduler sched;
-  private static ElevatorSubsystem subsys; 
+  	private static ElevatorSubsystem subsys; 
 	private int currentFloor = 1; // All elevators start on the first floor.
 	private boolean doorOpen = false;
 	private boolean motorOn = false;
