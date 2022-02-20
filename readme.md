@@ -61,6 +61,65 @@ The Scheduler in this Iteration acts as a communication channel; it takes entrie
 #### ElevatorSubsystem.java
 ElevatorSubsystem acts as a communication channel for Elevator.java and Scheduler.java; it takes instructions from Scheduler and sends them to Elevator for it to execute. Takes the instructions from Elevator and sends back to Scheduler
 
+## Use Cases
+Usecase: FloorButton
+Primary Actor: Passanger
+Basic Flow:
+
+1. Passenger arrives and presses up or down button
+2. If the elevator is in motion the appropriate up or down lamp is lit up
+3. ButtonPress is communicated to the scheduler through FloorSubsystem
+4. Scheduler checks if there is an elevator on the floor or if it has to send one
+5. ElevatorSubsystem sends job to Elevator
+6. Elevator notifies ElevatorSubsystem that elevator has been dispatched with estimated time
+7. Up or Down lamp is turned on
+8. Scheduler lets floor subsystem elevator is arriving along with estimated time
+10. Floor turns off lamp
+9. Floor waits for a new job
+
+For example:
+    Elevator is not in motion at floor 2 and all lamps are off
+    Passenger is at floor one requests for an elevator by pushing up button
+    Scheduler sees that the floor has passengers wanting to go to up
+    Down lamp is turned on
+    Sends elevator to first floor
+    Elevator arrives to first floor
+    Turns off the down lamp
+    Elevator is moving up and up lamp is turned on
+    
+Use Case
+ElevatorButton:
+
+Basic Flow:
+
+1- Passenger presses the button for the destination floor
+2- ButtonPress is communicated to the Scheduler
+3- Scheduler checks if there are other requests that can be fulfilled on the way (Default: NO)
+4- Scheduler sends intructions to ElevatorSubsystem
+5- ElevatorSubsystem sends job to Elevator
+6- Elevator does job
+7- Elevator asks for new job
+
+Alternative flow:
+
+RFS 3:
+There exists an other "similar" request:
+1- Scheduler reorganizes requests into 2*
+2- Sends the first one to the elevator, schedules the next one for when elevator 
+is free.
+3- GOTO Basic Flow Step 5
+
+* For example:
+    Elevator at 1st floor, passenger is inside
+    Passenger wants to go to 5th floor
+    Scheduler sees that elevator was requested at floor 3
+
+    Scheduler determines that this is a request that can be fulfilled on the way
+    
+    Scheduler makes 2 instructions:
+    Move from 1st floor to 3rd floor
+    Move from 3rd floor to 5th floor
+
 ## Time and speeds:
 According to the Data provided in Project Iteration 0,
 
