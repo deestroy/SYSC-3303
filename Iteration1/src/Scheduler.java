@@ -24,7 +24,7 @@ public class Scheduler implements Runnable {
 	}
 
 	/**
-	* Override constructor for Schedulere class including a queue.
+	* Override constructor for Scheduler class including a queue.
 	*/
 	public Scheduler(FloorSubsystem floorsub, ArrayList<ButtonPress> queue) {
 		this.floorsub = floorsub;
@@ -63,7 +63,7 @@ public class Scheduler implements Runnable {
 		synchronized (this.floorsub.getInfo()) {
 			while(true) {
 			if (this.floorsub.getInfo().size() == 0) {
-				System.out.println("Scheduler found that FloorSubsytem is empty");
+				System.out.println("Scheduler found that FloorSubsytem is empty" + LocalTime.now());
 
 				try {
 					//Thread.sleep(4000);

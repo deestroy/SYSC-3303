@@ -36,7 +36,7 @@ public class Floor implements Runnable {
 		synchronized (sched.getFloorQueue()) {
 			while(true) {
 			if (this.sched.getFloorQueue().size() < 100000) {
-				System.out.println("Floor Queue is Empty");
+				System.out.println("Floor Queue is Empty " + LocalTime.now());
 				
 				try {
 					sched.getFloorQueue().wait();
@@ -46,7 +46,7 @@ public class Floor implements Runnable {
 
 			}
 			this.recentPress = sched.getFloorQueue().get(0);
-			System.out.println("Floor has received something!");
+			System.out.println("Floor has received something! " + LocalTime.now());
 			sched.getFloorQueue().notifyAll();
 			}
 		}
@@ -58,6 +58,13 @@ public class Floor implements Runnable {
 	public int getFloorNumber() {
 		return this.floorNumber;
 	}
+
+
+  /**
+  *
+  */
+  public void changeLampStatus() {
+  }
 
 	/**
 	* Indicates the button that was most recently pressed.
