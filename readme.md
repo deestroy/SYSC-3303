@@ -1,6 +1,6 @@
 # SYSC 3303 Elevator Project
 
-## Iteration 1
+## Iteration 2
 ### Work Distribution
 #### Dhriti Aravind
 - Parsing the input txt file
