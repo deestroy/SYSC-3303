@@ -51,6 +51,9 @@ An elevator has information about its current task. This includes the floor it's
 The Scheduler in this Iteration acts as a communication channel; it takes entries from the FloorSubsystem and delivers them to the Elevator. It also receives messages from the 
 Elevator and delivers them to the Floor.
 
+#### ElevatorSubsystem.java
+ElevatorSubsystem acts as a communication channel for Elevator.java and Schdeuler.java; it takes instructions from Scheduler and sends them to Elevator for it to execute. 
+
 ## Time and speeds:
 According to the Data provided in Project Iteration 0,
 
