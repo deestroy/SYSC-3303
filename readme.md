@@ -5,21 +5,25 @@
 #### Dhriti Aravind
 - Parsing the input txt file
 - Scheduler.java
-- FloorSubsystem - Parsing
+- FloorSubsystem 
+- Parsing
 - UML Diagram
 - README.txt
+- ElevatorSubsystem.java
 
 #### Mohammed Jemal
 - UML Diagram
 - Testing
 - Javadoc documenting
 - README.txt
+- State Machine Diagram
 
 #### Aymaan Newaz
 - Elevator.java
 - README.txt
 - Set up instructions and testing
 - Sequence Diagram
+- State Machine Diagram
 
 #### Mohamed Selim
 - README.txt
@@ -27,6 +31,8 @@
 - Elevator.java
 - FloorSubsystem.java
 - ButtonPress.java
+- ElevatorSubsystem.java
+- State Machine Diagram
 
 #### Marwan Zeyada
 - Testing
@@ -34,6 +40,8 @@
 - Scheduler.java
 - UML diagram
 - README.txt
+- ElevatorSubsystem.java
+- State Machine Diagram
 
 #### ButtonPress.java
 ButtonPress is a container class for the messages that are passed back and forth through the components of the system. 
@@ -48,11 +56,10 @@ Has a button to input the direction the user wants to go. It also has a lamp tha
 An elevator has information about its current task. This includes the floor it's heading to, the direction, and time needed for the task. It receives instructions from the Scheduler, executes them, then sends a message to the Scheduler.
 
 #### Scheduler
-The Scheduler in this Iteration acts as a communication channel; it takes entries from the FloorSubsystem and delivers them to the Elevator. It also receives messages from the 
-Elevator and delivers them to the Floor.
+The Scheduler in this Iteration acts as a communication channel; it takes entries from the ElevatorSubsystem and delivers them to the Elevator. It also sends and receives messages from the ElevatorSubsystem about the status of Elevator.
 
 #### ElevatorSubsystem.java
-ElevatorSubsystem acts as a communication channel for Elevator.java and Schdeuler.java; it takes instructions from Scheduler and sends them to Elevator for it to execute. 
+ElevatorSubsystem acts as a communication channel for Elevator.java and Scheduler.java; it takes instructions from Scheduler and sends them to Elevator for it to execute. Takes the instructions from Elevator and sends back to Scheduler
 
 ## Time and speeds:
 According to the Data provided in Project Iteration 0,
@@ -66,3 +73,4 @@ According to the Data provided in Project Iteration 0,
 - #### The acceleration of the elevator was found to be 0.9 m/sec^2
 
 - #### The maximum speed of the elevator in the recorded dataset was 2.3 m/sec
+
