@@ -62,8 +62,11 @@ The Scheduler in this Iteration acts as a communication channel; it takes entrie
 ElevatorSubsystem acts as a communication channel for Elevator.java and Scheduler.java; it takes instructions from Scheduler and sends them to Elevator for it to execute. Takes the instructions from Elevator and sends back to Scheduler
 
 ## Use Cases
+
 Usecase: FloorButton
+
 Primary Actor: Passanger
+
 Basic Flow:
 
 1. Passenger arrives and presses up or down button
@@ -87,8 +90,8 @@ For example:
     Turns off the down lamp
     Elevator is moving up and up lamp is turned on
     
-Use Case
-ElevatorButton:
+
+Use Case: ElevatorButton:
 
 Basic Flow:
 
