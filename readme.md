@@ -1,6 +1,6 @@
 # SYSC 3303 Elevator Project
 
-## Iteration 2
+## Iteration 3
 ### Work Distribution
 #### Dhriti Aravind
 - Parsing the input txt file
@@ -56,10 +56,10 @@ Has a button to input the direction the user wants to go. It also has a lamp tha
 An elevator has information about its current task. This includes the floor it's heading to, the direction, and time needed for the task. It receives instructions from the Scheduler, executes them, then sends a message to the Scheduler.
 
 #### Scheduler
-The Scheduler in this Iteration acts as a communication channel; it takes entries from the ElevatorSubsystem and delivers them to the Elevator. It also sends and receives messages from the ElevatorSubsystem about the status of Elevator.
+The Scheduler in this Iteration acts as a communication channel; it takes entries from the ElevatorSubsystem and delivers them to the Elevator. It also sends and receives messages from the ElevatorSubsystem about the status of Elevator. Added UDP to communicate between the classes.
 
 #### ElevatorSubsystem.java
-ElevatorSubsystem acts as a communication channel for Elevator.java and Scheduler.java; it takes instructions from Scheduler and sends them to Elevator for it to execute. Takes the instructions from Elevator and sends back to Scheduler
+ElevatorSubsystem acts as a communication channel for Elevator.java and Scheduler.java; it takes instructions from Scheduler and sends them to Elevator for it to execute. Takes the instructions from Elevator and sends back to Scheduler. Added UDP to communicate between the classes.
 
 ## Use Cases
 
