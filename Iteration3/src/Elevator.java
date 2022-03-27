@@ -1,26 +1,31 @@
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * This class is meant to represent an elevator car object found in buildings
  * with multiple floors.
  */
-public class Elevator implements Runnable {
+public class Elevator{
 	private ElevatorSubsystem subsys;
+	private boolean floorUpdated = false; //THe elevator has changed its position and needs to tell the Scheduler (through sybsystem)
 	private int currentFloor = 2; // All elevators start on the first floor.
+	private int[] plannedStops;
 	private int carId = 0;
+	private ButtonPress completedTask;
 	private boolean doorStatus = false; // True = Door is open, False = Door is closed
 	private boolean motorStatus = false; // True = Motor is on, False = Motor is off
 	private boolean currDirection = false; // True = Elevator is moving Up, False = Elevator is moving Down
 
 	private double ELEVATORSPEED = 2.7; // m/s
-	private double DOOR_OPEN_TIME = 0.0; // Time taken to open/close the elevator door
+	private double DOOR_OPEN_TIME = 5000; // Time taken to open/close the elevator door
 	private double LOAD_PASSENGER_TIME = 10.0; // Time taken for one passenger to get on the elevator when the door is
 												// open
 	private double ELEVATORACCELERATION = 0.9; // m/s^2
 	private ArrayList<ButtonPress> taskList = new ArrayList<ButtonPress>();
 
+	
 	/**
 	 * Constructor for the Elevator Class.
 	 * 
@@ -31,19 +36,17 @@ public class Elevator implements Runnable {
 		this.carId = carId;
 		this.subsys = subsys;
 	}
-
-	/**
-	 * Returns the number of the current floor the elevator is located.
-	 */
-	public int getCurrentFloor() {
-		return currentFloor;
+	
+	public void setFloorUpdated(boolean floorChange) {
+		this.floorUpdated = floorChange;
 	}
-
-	/**
-	 * Returns the current state of the motor
-	 */
-	public boolean getMotorStatus() {
-		return this.motorStatus;
+	@Override
+	public String toString() {
+		String elevatorInfo = "The elevator is currently on floor: " + currentFloor;
+		elevatorInfo += "\nThe motor of the elevator is currently: " + motorStatus;
+		elevatorInfo += "\nThe door of the elevator is currently: " + doorStatus;
+		elevatorInfo += "\nThe last direction in which the elevator has moved is: " + currDirection;
+		return elevatorInfo;
 	}
 
 	/**
@@ -61,18 +64,6 @@ public class Elevator implements Runnable {
 		System.out.println("The motor is now off!");
 	}
 
-	/**
-	 * Sets the state of the door
-	 *
-	 * @param motorStatus, boolean door state
-	 */
-	public boolean getDoorStatus() {
-		return this.doorStatus;
-	}
-
-	/**
-	 * Returns the current state of the motor
-	 */
 	public void setDoorStatus(boolean doorStatus) {
 		try {
 			Thread.sleep((int) this.DOOR_OPEN_TIME);
@@ -128,37 +119,22 @@ public class Elevator implements Runnable {
 
 	// When the elevator arrives at a floor, it updates its current floor and checks
 	// if there are passengers on that floor moving in the same direction.
-	public int arrived_floor(int floorNum) {
+	public void arrived_floor(int floorNum) {
 		this.currentFloor = floorNum;
+
 		System.out.printf("\nElevator %d is near floor %d!\n", this.carId, this.currentFloor);
 
-		synchronized (this.taskList) {
-			if (this.taskList.size() > 1) { // we have more than 1 task! check if any of them are at this floor:
-
-				for (int i = this.taskList.size(); i > 0; i--) {
-					if (taskList.get(i).getCarButton() == this.currentFloor) { // We have a task at this floor! check if
-																				// it is in the same direction we're
-																				// moving:
-						System.out.println("Task at this floor!");
-						if (taskList.get(i).getButtonDirection() == this.currDirection) { // Same direction we're
-																							// moving! Stop for him!
-							this.setMotorStatus(false); // Stop the motor
-							this.setDoorStatus(true); // Open the door
-							this.loadPassengers(1); // Load the passengers
-							this.taskList.notifyAll();
-							return (i);
-						}
-					}
-				}
-			}
-
-		}
-		return -1;
+	
 	}
 
 	public int move_elevator(ButtonPress instruction) {
 
+		ArrayList<Integer> stops = new ArrayList<Integer>();
+
+		int newTaskIndex = -1;
 		int destination_floor = instruction.getFloorNumber();
+		stops.add(destination_floor);
+		int floors_moved = 0;
 		boolean direction = instruction.getButtonDirection();
 		int initial_floor = this.currentFloor;
 		// Calculate the total time of the trip:
@@ -168,15 +144,14 @@ public class Elevator implements Runnable {
 
 		this.setMotorStatus(true);
 
-		int newTaskIndex = -1;
-
+		newTaskIndex = -1;
 		this.currDirection = instruction.getButtonDirection();
-		for (int floors_moved = 0; floors_moved <= Math.abs(initial_floor - destination_floor); floors_moved++) {
-			if (newTaskIndex == -1) {
+		for (floors_moved = 0; floors_moved <= Math.abs(initial_floor - destination_floor); floors_moved++) {
+			if (newTaskIndex == -1) {// No tasks to be picked up
 				if (direction) { // if we're moving up:
-					newTaskIndex = arrived_floor(initial_floor + floors_moved);
+					//newTaskIndex = arrived_floor(initial_floor + floors_moved);
 				} else { // if we're moving down:
-					newTaskIndex = arrived_floor(initial_floor - floors_moved);
+					//newTaskIndex = arrived_floor(initial_floor - floors_moved);
 				}
 				if (floors_moved + 1 == Math.abs(initial_floor - destination_floor)) {
 					continue;
@@ -186,11 +161,16 @@ public class Elevator implements Runnable {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-			}
-			else {
-				return newTaskIndex;
+			} else { // New task we can pick up along the way!
+						// Add a new stop for it
+				if (!(stops.contains(this.taskList.get(newTaskIndex)))) {
+					stops.add(instruction.getFloorNumber());
+					System.out.println("The currently planned stops are:" + stops);
+				}
 			}
 		}
+
+		this.completedTask = instruction;
 		this.setMotorStatus(false);
 		return newTaskIndex;
 	}
@@ -198,48 +178,26 @@ public class Elevator implements Runnable {
 	/**
 	 * This is the code that runs when the thread starts.
 	 */
-	public void run() {
-		synchronized (this.subsys.getTaskList()) {
-			while (true) {
-				if (this.subsys.getTaskList().size() == 0) {
-					System.out.println(LocalTime.now() + " ElevatorSubsystem queue is Empty ");
-					try {
-						this.subsys.getTaskList().wait();
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-
-				}
-				this.taskList.add(this.subsys.getTaskList().get(0));
-				this.subsys.getTaskList().remove(0);
-				System.out.println(LocalTime.now() + " Elevator receieved something!");
-
-				System.out.println(LocalTime.now() + " Elevator departure time: ");
-				int lampDirection = 2;
-				if (currentFloor - this.taskList.get(0).getFloorNumber() > 0) {
-					lampDirection = 1;
-				} else if (currentFloor - this.taskList.get(0).getFloorNumber() < 0) {
-					lampDirection = 0;
-				}
-				this.subsys.changeLampStatus(lampDirection);
-				for (int i = 0; i < this.taskList.size(); i++) {
-					System.out.println(this.taskList.get(i).getFloorNumber());
-				}
-				while(this.taskList.size() != 0) {
-					int newTaskIndex = move_elevator(this.taskList.get(0));
-					if(newTaskIndex == -1) {
-						System.out.println("Task completed!\n\n");
-					}
-					else{move_elevator(this.taskList.get(newTaskIndex));}
+	public static void main(String[] args) {
+		//loop:
+		
+		//wait for task from elevatorSubsystem:
+		
+		//task added? do it. else, reloop ig
+		
+			//loop: for every floor traveled in task:
+				//Is floor a planned stop? If so stop and do the shit (door open load passenger, remove from planned stop list, remove task from task list, etc)
+		
 				
-				System.out.println(LocalTime.now() + " Elevator arrival time: ");
-				this.subsys.changeLampStatus(2);
-
-				this.subsys.addResponseList(this.taskList.get(0));
-				this.taskList.remove(0);
-				System.out.println(LocalTime.now() + " Elevator sent response to Response List ");
-				}
-			}
-		}
+				//Synchronize over floorUpdated:
+				//YO SUBSYS I NEED TO REPORT (floorUpdated = true)
+				
+				//wait for elevator subsystem to reset floorUpdated to false (which means message delivered to scheduler)
+				
+				//Exit synchronized
+				//New tasks? Change plans (add planned stops if needed) accordingly
+				//move to next floor
+			//Done! do the done stuff (same as "is floor a planned stop?" thing)
+				
 	}
 }
