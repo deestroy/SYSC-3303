@@ -1,12 +1,6 @@
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /*
  *
@@ -15,10 +9,8 @@ import java.util.Arrays;
  * - Scheduler will reply to the Elevator when there is work to be done
  * - After data is sent from to the elevator, it will forward the Data to the floor
  */
-public class Scheduler implements Runnable {
+public class Scheduler {
 
-	DatagramPacket sendPacket, receivePacket;
-	DatagramSocket sendSocket, receiveSocket;
 	private ArrayList<ButtonPress> queue = new ArrayList<ButtonPress>();
 	private ArrayList<ButtonPress> responseLog = new ArrayList<ButtonPress>();
 	private FloorSubsystem floorsub;
@@ -30,19 +22,6 @@ public class Scheduler implements Runnable {
 	 * @param floorsub FloorSubsystem instance
 	 */
 	public Scheduler(FloorSubsystem floorsub) {
-		try {
-			// Construct a datagram socket and bind it to any available
-			// port on the local host machine.
-			sendSocket = new DatagramSocket(302);
-
-			// Construct a datagram socket and bind it to port 301
-			// on the local host machine..
-			receiveSocket = new DatagramSocket(301);
-
-		} catch (SocketException se) {
-			se.printStackTrace();
-		}
-		
 		this.floorsub = floorsub;
 	}
 
@@ -89,53 +68,42 @@ public class Scheduler implements Runnable {
 		notifyAll();
 	}
 
-	@Override
-	public void run() {
-		while (true) {
-			byte first[] = new byte[50];
-			receivePacket = new DatagramPacket(first, first.length);
+	public static void main(String[] args) {
+		//receive all initial elevator info from elevator Subsystem
+		
+		//Loop:
+			//wait for tasks from floorsubsys
+		
+			//any updates on elevator info? timeout
+			
+			//Determine which elevator should do the task
+			
+			//Send task info to elevatorSubsys (button press + 1 bit that determines which elevator should do it)
+			
+			
+		//The code under this line should go under a new function that "waits for tasks from floorsubsys"
+		//Lets make a bunch of functions!
+		/*synchronized (this.floorsub.getInfo()) {
+			while (true) {
+				if (this.floorsub.getInfo().size() == 0) {
+					System.out.println(
+							LocalTime.now() + " Scheduler found that FloorSubsytem doesn't have any new jobs for it.");
 
-			try {
-				System.out.println("Scheduler Waiting..."); // so we know we're waiting
-				receiveSocket.receive(receivePacket);
-			} catch (IOException e) {
-				System.out.print("IO Exception: likely:");
-				System.out.println("Receive Socket Timed Out.\n" + e);
-				e.printStackTrace();
+					try {
+						this.floorsub.getInfo().wait();
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+
+				}
+				synchronized (queue) {
+					queue.add(this.floorsub.getInfo().get(0));
+					this.queue.notifyAll();
+				}
+				this.floorsub.getInfo().remove(0);
+				System.out.println(LocalTime.now() + " Scheduler received job from Floor Subsystem.");
 			}
-
-			int len = receivePacket.getLength();
-			String received = new String(receivePacket.getData(), 0, len);
-
-			System.out.println(received);
-
-			String[] splited = received.split(" ");
-
-			boolean direction = false;
-			if (splited[2].equals("Up")) {
-				direction = true;
-			}
-			
-			this.queue.add(new ButtonPress(direction, Integer.parseInt(splited[1]), Integer.parseInt(splited[3]),
-					LocalTime.parse(splited[0])));
-			
-			byte notify[] = {1};
-			
-			try {
-				sendPacket = new DatagramPacket(notify, notify.length, InetAddress.getLocalHost(), 303);
-			} catch (UnknownHostException e) {
-				e.printStackTrace();
-				System.exit(1);
-			}
-			
-			try {
-				sendSocket.send(sendPacket);
-				System.out.println("\nScheduler Sent Notification to ElevatorSubsystem\n");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-		}
+		}*/
 	}
 
 	/**
